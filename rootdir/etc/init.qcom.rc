@@ -49,6 +49,11 @@ on early-init
     chown system graphics /sys/kernel/debug/sync/sw_sync
     chmod 0666 /sys/kernel/debug/sync/sw_sync
 
+    # Logger
+    start boot_log
+    start boot_log_crash
+    start boot_log_kernel
+
 on init
     # Create cgroup mount point for memory
     mkdir /sys/fs/cgroup/memory/bg 0750 root system
@@ -100,6 +105,12 @@ on early-boot
     write /sys/bus/msm_subsys/devices/subsys7/restart_level "related"
     write /sys/bus/msm_subsys/devices/subsys8/restart_level "related"
 
+
+    # Logger
+    start boot_log
+    start boot_log_crash
+    start boot_log_kernel
+
 on boot
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
@@ -148,6 +159,11 @@ on boot
     enable vendor.qcrild2
     enable vendor.dataqti
     enable vendor.dataadpl
+
+    # Logger
+    start boot_log
+    start boot_log_crash
+    start boot_log_kernel
 
 on post-fs-data
     # Create directory used by display clients
@@ -322,3 +338,36 @@ service vendor.power /vendor/bin/hw/android.hardware.power-service-qti
     user system
     group system input
     override
+
+# Logger
+service boot_log /system/bin/logcat -b all -D -f /cache/boot_log_full.txt
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+service boot_log_crash /system/bin/logcat -b crash -D -f /cache/boot_log_crash.txt
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+service boot_log_kernel /system/bin/logcat -b kernel -D -f /cache/boot_log_kernel.txt
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+on early-boot
+    start boot_log
+    start boot_log_crash
+    start boot_log_kernel
+
+on property:sys.boot_completed=1
+# Stop the logger service
+    stop boot_log
+    stop boot_log_crash
+    stop boot_log_kernel
