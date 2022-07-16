@@ -11,7 +11,7 @@ cd vendor/xiaomi/vayu && git pull && cd ../../..
 echo ""
 else
 echo ""
-git clone https://github.com/sanjeevstunner/vendor_xiaomi_vayu.git vendor/xiaomi/vayu
+git clone https://github.com/PixelPlusUI-Devices/vendor_xiaomi_vayu.git vendor/xiaomi/vayu
 fi
 
 # Kernel Tree
@@ -21,7 +21,7 @@ cd kernel/xiaomi/vayu && git pull && cd ../../..
 echo ""
 else
 echo ""
-git clone https://github.com/Jebaitedneko/android_kernel_xiaomi_vayu.git -b r2 kernel/xiaomi/vayu
+git clone https://github.com/PixelPlusUI-Devices/kernel_xiaomi_vayu.git -b r2 kernel/xiaomi/vayu
 fi
 
 # Mi Parts
