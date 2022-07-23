@@ -14,6 +14,16 @@ echo ""
 git clone https://github.com/PixelPlusUI-Devices/vendor_xiaomi_vayu.git vendor/xiaomi/vayu
 fi
 
+# Hardware Tree
+if [[ -d "hardware/xiaomi" ]]; then
+echo "Looking for changes in hardware tree"
+cd hardware/xiaomi && git pull && cd ../..
+echo ""
+else
+echo ""
+git clone https://github.com/sanjeevstunner/hardware_xiaomi.git hardware/xiaomi
+fi
+
 # Kernel Tree
 if [[ -d "kernel/xiaomi/vayu" ]]; then
 echo "Looking for changes in kernel tree"
