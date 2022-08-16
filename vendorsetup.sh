@@ -31,7 +31,6 @@ cd kernel/xiaomi/vayu && git pull && cd ../../..
 echo ""
 else
 echo ""
-git clone https://github.com/PixelPlusUI-Devices/kernel_xiaomi_vayu.git -b r2 kernel/xiaomi/vayu
 fi
 
 # Mi Parts
