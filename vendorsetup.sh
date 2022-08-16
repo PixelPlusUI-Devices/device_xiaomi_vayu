@@ -11,17 +11,15 @@ cd vendor/xiaomi/vayu && git pull && cd ../../..
 echo ""
 else
 echo ""
-git clone https://github.com/PixelPlusUI-Devices/vendor_xiaomi_vayu.git vendor/xiaomi/vayu
+git clone https://github.com/sanjeevstunner/vendor_xiaomi_vayu.git vendor/xiaomi/vayu
 fi
 
 # Hardware Tree
 if [[ -d "hardware/xiaomi" ]]; then
-echo "Looking for changes in hardware tree"
-cd hardware/xiaomi && git pull && cd ../..
-echo ""
-else
-echo ""
+echo "Removing prebuilt hardware tree"
+rm -rf hardware/xiaomi
 git clone https://github.com/sanjeevstunner/hardware_xiaomi.git hardware/xiaomi
+echo ""
 fi
 
 # Kernel Tree
@@ -31,6 +29,7 @@ cd kernel/xiaomi/vayu && git pull && cd ../../..
 echo ""
 else
 echo ""
+git clone https://github.com/aLnProject/kernel_xiaomi_vayu.git -b zeta-staging kernel/xiaomi/vayu
 fi
 
 # Mi Parts
@@ -40,7 +39,7 @@ cd vendor/xiaomi/devicesettings && git pull && cd ../../..
 echo ""
 else
 echo ""
-git clone https://github.com/PixelPlusUI-Devices/vayu_vendor_xiaomi_device_settings.git vendor/xiaomi/devicesettings
+git clone https://github.com/sanjeevstunner/vendor_xiaomi_device_settings.git -b los vendor/xiaomi/devicesettings
 fi
 
 # Google Camera
@@ -54,6 +53,11 @@ git clone https://gitlab.com/sanjeevstunner/vendor-g-cam-bsg.git vendor/Gcam
 fi
 
 # Pixel Launcher MOD
+if [[ -d "vendor/PixelLauncher" ]]; then
+echo "Remove prebuilt Pixel Launcher MOD Repo"
+rm -rf vendor/PixelLauncher
+fi
+
 if [[ -d "vendor/pixel/launcher" ]]; then
 echo "Looking for changes in Pixel Launcher MOD Repo"
 cd vendor/pixel/launcher && git pull && cd ../../..
