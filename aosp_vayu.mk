@@ -29,3 +29,7 @@ PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=vayu_global \
     PRODUCT_MODEL=M2102J20SI
+
+# Variables for Pixel Plus UI Offcial 
+PPUI_MAINTAINER := Chandler Bing
+CUSTOM_BUILD_TYPE := OFFICIAL
